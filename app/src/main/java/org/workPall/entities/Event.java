@@ -5,23 +5,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Event {
-    private Long id;
+    private int id;
     private String name;
     private LocalDateTime dateTime;
     private Space space;
     private Map<Long, Reservation> reservations = new HashMap<>();
 
-    public Event(Long id, String name, LocalDateTime dateTime, Space space) {
+    public Event(int id, String name, LocalDateTime dateTime, Space space) {
         this.id = id;
         this.name = name;
         this.dateTime = dateTime;
         this.space = space;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

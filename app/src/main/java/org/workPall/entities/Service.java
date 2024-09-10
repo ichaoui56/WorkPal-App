@@ -4,25 +4,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Service {
-    private Long id;
+    private int id;
     private String name;
     private String description;
-    private double price;
+    private int quantity;
+    private int price;
     private Space space;
     private Map<Long, Reservation> reservations = new HashMap<>();
 
-    public Service(Long id, String name, String description, double price, Space space) {
+    public Service(int id, String name, String description, int quantity, int price, Space space) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.quantity = quantity;
         this.price = price;
         this.space = space;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -40,11 +42,18 @@ public class Service {
         this.description = description;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
-    public double getPrice() {
+
+    public int getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

@@ -3,24 +3,29 @@ package org.workPall.entities;
 import java.time.LocalDate;
 
 public class Subscription {
-    private Long id;
+    private int id;
+    private String title;
+    private int price;
+    private Boolean status;
     private LocalDate startDate;
     private LocalDate endDate;
     private User user;
     private Space space;
 
-    public Subscription(Long id, LocalDate startDate, LocalDate endDate, User user, Space space) {
+    public Subscription(int id, LocalDate startDate, LocalDate endDate, User user, Space space, String title, int price, Boolean status) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.user = user;
         this.space = space;
+        this.title = title;
+        this.price = price;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,6 +46,20 @@ public class Subscription {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public Space getSpace() {

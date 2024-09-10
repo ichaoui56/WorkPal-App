@@ -1,21 +1,21 @@
 package org.workPall.entities;
 
 public class Favorite {
-    private Long id;
+    private int id;
     private User user;
     private Space space;
 
-    public Favorite(Long id, User user, Space space) {
+    public Favorite(int id, User user, Space space) {
         this.id = id;
         this.user = user;
         this.space = space;
     }
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

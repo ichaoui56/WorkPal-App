@@ -3,20 +3,20 @@ package org.workPall.entities;
 import java.time.LocalDateTime;
 
 public class Notification {
-    private Long id;
+    private int id;
     private String message;
     private LocalDateTime timestamp;
     private User user;
 
-    public Notification(Long id, String message, LocalDateTime timestamp, User user) {
+    public Notification(int id, String message, LocalDateTime timestamp, User user) {
         this.id = id;
         this.message = message;
         this.timestamp = timestamp;
         this.user = user;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     public String getMessage() { return message; }
     public void setMessage(String message) { this.message = message; }

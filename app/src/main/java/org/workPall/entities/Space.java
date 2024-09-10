@@ -4,27 +4,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Space {
-    private Long id;
+    private int id;
     private String name;
     private String description;
     private String location;
+    private Boolean available;
     private Map<Long, Reservation> reservations = new HashMap<>();
     private Map<Long, Feedback> feedbacks = new HashMap<>();
     private Map<Long, Favorite> favorites = new HashMap<>();
     private Map<Long, Event> events = new HashMap<>();
     private Map<Long, Service> services = new HashMap<>();
 
-    public Space(Long id, String name, String description, String location) {
+    public Space(int id, String name, String description, String location, Boolean available) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.location = location;
+        this.available = available;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -47,6 +49,13 @@ public class Space {
     }
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 
     public Map<Long, Reservation> getReservations() {

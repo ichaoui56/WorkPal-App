@@ -3,12 +3,12 @@ package org.workPall.entities;
 import java.time.LocalDateTime;
 
 public class Payment {
-    private Long id;
-    private double amount;
+    private int id;
+    private int amount;
     private LocalDateTime paymentDate;
     private Reservation reservation;
 
-    public Payment(Long id, double amount, LocalDateTime paymentDate, Reservation reservation) {
+    public Payment(int id, int amount, LocalDateTime paymentDate, Reservation reservation) {
         this.id = id;
         this.amount = amount;
         this.paymentDate = paymentDate;
@@ -16,17 +16,17 @@ public class Payment {
     }
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
-    public void setAmount(double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

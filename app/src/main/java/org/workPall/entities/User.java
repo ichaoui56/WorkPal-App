@@ -1,13 +1,10 @@
 package org.workPall.entities;
 
 import org.workPall.enums.Role;
-import org.workPall.orm.annotations.Column;
-import org.workPall.orm.annotations.Table;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Table(name= "users")
 public class User {
 
     private int id;

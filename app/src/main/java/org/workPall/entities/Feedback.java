@@ -1,13 +1,13 @@
 package org.workPall.entities;
 
 public class Feedback {
-    private Long id;
+    private int id;
     private String comment;
     private int rating;
     private User user;
     private Space space;
 
-    public Feedback(Long id, String comment, int rating, User user, Space space) {
+    public Feedback(int id, String comment, int rating, User user, Space space) {
         this.id = id;
         this.comment = comment;
         this.rating = rating;
@@ -15,10 +15,10 @@ public class Feedback {
         this.space = space;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Reservation {
-    private Long id;
+    private int id;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private User user;
@@ -13,7 +13,7 @@ public class Reservation {
     private Map<Long, Service> services = new HashMap<>();
     private Payment payment;
 
-    public Reservation(Long id, LocalDateTime startTime, LocalDateTime endTime, User user, Space space) {
+    public Reservation(int id, LocalDateTime startTime, LocalDateTime endTime, User user, Space space) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -22,10 +22,10 @@ public class Reservation {
     }
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

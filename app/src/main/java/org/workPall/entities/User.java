@@ -4,32 +4,25 @@ import org.workPall.enums.Role;
 import org.workPall.orm.annotations.Column;
 import org.workPall.orm.annotations.Table;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Table(name= "users")
 public class User {
 
-    @Column(name = "id")
     private int id;
-
-    @Column(name="first_name")
     private String firstName;
-
-    @Column(name="last_name")
     private String lastName;
-
-    @Column(name="email")
     private String email;
-
-    @Column(name="phone_number")
-    private String phoneNumber;
-
-    @Column(name="address")
-    private String address;
-
-    @Column(name="password")
     private String password;
-
-    @Column(name="role")
+    private String phoneNumber;
+    private String address;
     private Role role;
+    private Map<Long, Reservation> reservations = new HashMap<>();
+    private Map<Long, Feedback> feedbacks = new HashMap<>();
+    private Map<Long, Favorite> favorites = new HashMap<>();
+    private Map<Long, Notification> notifications = new HashMap<>();
+    private Map<Long, Subscription> subscriptions = new HashMap<>();
 
     public User( String firstName, String lastName, String email, String phoneNumber, String address, String password, Role role) {
         this.firstName = firstName;
@@ -104,6 +97,42 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public Map<Long, Reservation> getReservations() {
+        return reservations;
+    }
+    public void setReservations(Map<Long, Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public Map<Long, Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+    public void setFeedbacks(Map<Long, Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
+    }
+
+    public Map<Long, Favorite> getFavorites() {
+        return favorites;
+    }
+    public void setFavorites(Map<Long, Favorite> favorites) {
+        this.favorites = favorites;
+    }
+
+    public Map<Long, Notification> getNotifications() {
+        return notifications;
+    }
+    public void setNotifications(Map<Long, Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public Map<Long, Subscription> getSubscriptions() {
+        return subscriptions;
+    }
+    public void setSubscriptions(Map<Long, Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
+    }
+
 
     public String toString() {
         return "User [id=" + id + ", " +

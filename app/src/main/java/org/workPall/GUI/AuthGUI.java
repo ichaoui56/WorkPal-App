@@ -13,9 +13,14 @@ public class AuthGUI extends JFrame {
 
     private final UserServiceInter userServiceInter;
     private final MemberGUI memberGUI;
-    public AuthGUI(UserServiceInter userServiceInter, MemberGUI memberGUI) {
+    private final ManagerGUI managerGUI;
+    private final AdminGUI adminGUI;
+
+    public AuthGUI(UserServiceInter userServiceInter, MemberGUI memberGUI, ManagerGUI managerGUI, AdminGUI adminGUI) {
         this.userServiceInter = userServiceInter;
         this.memberGUI = memberGUI;
+        this.managerGUI = managerGUI;
+        this.adminGUI = adminGUI;
     }
 
     public void login() {
@@ -65,11 +70,29 @@ public class AuthGUI extends JFrame {
                 JOptionPane.showMessageDialog(AuthGUI.this, "Both email and password must be provided.", "Validation Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+
             if (userServiceInter.login(email, password)) {
-                memberGUI.showMemberUI();
+
+                String role = userServiceInter.getUserData().getRole().toString();
+
+                switch (role) {
+                    case "ADMIN":
+                        adminGUI.showAdminUI();
+                        break;
+                    case "MANAGER":
+                        managerGUI.showManagerUI();
+                        break;
+                    case "MEMBER":
+                        memberGUI.showMemberUI();
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(AuthGUI.this, "Unknown role: " + role, "Role Error", JOptionPane.ERROR_MESSAGE);
+                        break;
+                }
+
                 setVisible(false);
             } else {
-                JOptionPane.showMessageDialog(AuthGUI.this, "Invalid email or password");
+                JOptionPane.showMessageDialog(AuthGUI.this, "Invalid email or password", "Authentication Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -152,9 +175,14 @@ public class AuthGUI extends JFrame {
         gbc.gridy = 6;
         add(roleLabel, gbc);
 
-        JComboBox<Role> roleComboBox = new JComboBox<>(Role.values());
+        JComboBox<Role> roleComboBox = new JComboBox<>(Role.getNonAdminRoles());
         gbc.gridx = 1;
         add(roleComboBox, gbc);
+
+        JButton back = new JButton("Back");
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        add(back, gbc);
 
         JButton registerButton = new JButton("Register");
         gbc.gridx = 1;
@@ -191,6 +219,13 @@ public class AuthGUI extends JFrame {
             } else {
                 JOptionPane.showMessageDialog(AuthGUI.this, "Registration failed: Email already in use.");
             }
+            getContentPane().removeAll();
+            login();
+            revalidate();
+            repaint();
+        });
+
+        back.addActionListener(e -> {
             getContentPane().removeAll();
             login();
             revalidate();

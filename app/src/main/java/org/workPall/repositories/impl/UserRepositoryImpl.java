@@ -23,10 +23,10 @@ public class UserRepositoryImpl implements UserRepositoryInter {
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
+                String firstName = rs.getString("firstname");
+                String lastName = rs.getString("lastname");
                 String email = rs.getString("email");
-                String phoneNumber = rs.getString("phone_number");
+                String phoneNumber = rs.getString("phonenumber");
                 String address = rs.getString("address");
                 String password = rs.getString("password");
                 String roleStr = rs.getString("role");
@@ -52,9 +52,9 @@ public class UserRepositoryImpl implements UserRepositoryInter {
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
-                String phoneNumber = rs.getString("phone_number");
+                String firstName = rs.getString("firstname");
+                String lastName = rs.getString("lastname");
+                String phoneNumber = rs.getString("phonenumber");
                 String address = rs.getString("address");
                 String password = rs.getString("password");
                 String roleStr = rs.getString("role");
@@ -73,7 +73,7 @@ public class UserRepositoryImpl implements UserRepositoryInter {
 
     @Override
     public User createUser(User user) {
-        String query = "INSERT INTO users (first_name, last_name, email, phone_number, address, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO users (firstname, lastname, email, phonenumber, address, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, user.getFirstName());
@@ -118,7 +118,7 @@ public class UserRepositoryImpl implements UserRepositoryInter {
 
     @Override
     public void update(User user) {
-        String query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, phone_number = ?, address = ?, role = ? WHERE email = ?";
+        String query = "UPDATE users SET firstname = ?, lastname = ?, email = ?, phonenumber = ?, address = ?, role = ? WHERE email = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, user.getFirstName());

@@ -14,7 +14,9 @@ public class MainGUI {
         UserRepositoryImpl userRepository = new UserRepositoryImpl();
         UserServiceInter userServiceInter = new UserServiceImpl(userRepository);
         MemberGUI memberGUI = new MemberGUI(userServiceInter);
-        authGUI = new AuthGUI(userServiceInter, memberGUI);
+        AdminGUI adminGUI = new AdminGUI();
+        ManagerGUI managerGUI = new ManagerGUI(userServiceInter);
+        authGUI = new AuthGUI(userServiceInter, memberGUI, managerGUI, adminGUI);
     }
 
     public void displayAuth() {

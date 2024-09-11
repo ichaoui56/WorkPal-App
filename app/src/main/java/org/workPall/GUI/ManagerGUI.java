@@ -1,9 +1,12 @@
 package org.workPall.GUI;
 
+import org.workPall.entities.Space;
 import org.workPall.entities.User;
+import org.workPall.services.interfaces.SpaceServiceInter;
 import org.workPall.services.interfaces.UserServiceInter;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class ManagerGUI extends JFrame {
@@ -12,9 +15,11 @@ public class ManagerGUI extends JFrame {
     private JPanel sidebarPanel;
     private JPanel profilePanel;
     private UserServiceInter userService;
+    private static SpaceServiceInter spaceService;
 
-    public ManagerGUI(UserServiceInter userService) {
+    public ManagerGUI(UserServiceInter userService, SpaceServiceInter spaceService) {
         this.userService = userService;
+        this.spaceService = spaceService;
     }
 
     public void showManagerUI() {
@@ -74,7 +79,7 @@ public class ManagerGUI extends JFrame {
 
     private JPanel createHomePanel() {
         JPanel panel = new JPanel();
-        panel.add(new JLabel("Welcome to the Member Management System"));
+        panel.add(new JLabel("Welcome to the Manager Management System"));
         return panel;
     }
 
@@ -124,19 +129,81 @@ public class ManagerGUI extends JFrame {
         panel.add(logoutButton);
         panel.add(buttonPanel);
 
-
         return panel;
     }
 
 
-    private JPanel createSpacePanel() {
+    private static JPanel createSpacePanel() {
         JPanel panel = new JPanel(new GridLayout(4, 1));
-        panel.add(new JButton("Add a space"));
+
+        JButton addButton = new JButton("Add a space");
+        addButton.addActionListener(e -> {
+            createAddSpaceForm();
+        });
+
+        panel.add(addButton);
         panel.add(new JButton("Modify Space"));
         panel.add(new JButton("Delete a space"));
         panel.add(new JButton("Display all spaces"));
+
         return panel;
     }
+
+
+    private static int nextSpaceId = 1; // Auto-increment ID
+
+    private static void createAddSpaceForm() {
+        JFrame addSpaceFrame = new JFrame("Add Space");
+        addSpaceFrame.setSize(400, 300);
+        addSpaceFrame.setLayout(new BorderLayout());
+
+        JPanel formPanel = new JPanel(new GridLayout(5, 2, 10, 10)); // 10px padding between components
+        formPanel.setBorder(new EmptyBorder(20, 20, 20, 20)); // 20px padding around the panel
+
+        JLabel nameLabel = new JLabel("Name:");
+        JTextField nameField = new JTextField();
+        JLabel descriptionLabel = new JLabel("Description:");
+        JTextField descriptionField = new JTextField();
+        JLabel locationLabel = new JLabel("Location:");
+        JTextField locationField = new JTextField();
+        JLabel availableLabel = new JLabel("Available (true/false):");
+        JTextField availableField = new JTextField();
+
+        JButton submitButton = new JButton("Submit");
+        submitButton.addActionListener(e -> {
+            String name = nameField.getText();
+            String description = descriptionField.getText();
+            String location = locationField.getText();
+            Boolean available = Boolean.parseBoolean(availableField.getText());
+
+            Space newSpace = new Space(0, name, description, location, available);
+            Space createSpace = spaceService.addSpace(newSpace);
+            if (createSpace != null && createSpace.getId() > 0) {
+                JOptionPane.showMessageDialog(addSpaceFrame, "Space added successfully: " + createSpace.toString(), "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(addSpaceFrame, "Failed to add space.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            addSpaceFrame.dispose();
+        });
+
+        formPanel.add(nameLabel);
+        formPanel.add(nameField);
+        formPanel.add(descriptionLabel);
+        formPanel.add(descriptionField);
+        formPanel.add(locationLabel);
+        formPanel.add(locationField);
+        formPanel.add(availableLabel);
+        formPanel.add(availableField);
+        formPanel.add(new JLabel()); // Empty cell
+        formPanel.add(submitButton);
+
+        addSpaceFrame.add(formPanel, BorderLayout.CENTER);
+
+        addSpaceFrame.setLocationRelativeTo(null);
+
+        addSpaceFrame.setVisible(true);
+    }
+
 
     private JPanel createSubscriptionPanel() {
         JPanel panel = new JPanel(new GridLayout(5, 1));

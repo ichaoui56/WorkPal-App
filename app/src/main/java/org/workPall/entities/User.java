@@ -4,6 +4,7 @@ import org.workPall.enums.Role;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class User {
 
@@ -21,7 +22,8 @@ public class User {
     private Map<Long, Notification> notifications = new HashMap<>();
     private Map<Long, Subscription> subscriptions = new HashMap<>();
 
-    public User( String firstName, String lastName, String email, String phoneNumber, String address, String password, Role role) {
+    public User(int id, String firstName, String lastName, String email, String phoneNumber, String address, String password, Role role) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

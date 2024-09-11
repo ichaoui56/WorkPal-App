@@ -8,6 +8,7 @@ import org.workPall.repositories.interfaces.UserRepositoryInter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class UserRepositoryImpl implements UserRepositoryInter {
     private final Connection connection;
@@ -23,6 +24,7 @@ public class UserRepositoryImpl implements UserRepositoryInter {
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String firstName = rs.getString("firstname");
                 String lastName = rs.getString("lastname");
                 String email = rs.getString("email");
@@ -33,7 +35,7 @@ public class UserRepositoryImpl implements UserRepositoryInter {
 
                 Role role = Role.valueOf(roleStr);
 
-                User user = new User(firstName, lastName, email, phoneNumber, address, password, role);
+                User user = new User(id, firstName, lastName, email, phoneNumber, address, password, role);
 
                 users.add(user);
             }
@@ -52,6 +54,7 @@ public class UserRepositoryImpl implements UserRepositoryInter {
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
+                int id = rs.getInt("id");
                 String firstName = rs.getString("firstname");
                 String lastName = rs.getString("lastname");
                 String phoneNumber = rs.getString("phonenumber");
@@ -61,7 +64,7 @@ public class UserRepositoryImpl implements UserRepositoryInter {
 
                 Role role = Role.valueOf(roleStr);
 
-                user = new User(firstName, lastName, email, phoneNumber, address, password, role);
+                user = new User(id, firstName, lastName, email, phoneNumber, address, password, role);
             }
 
         } catch (SQLException e) {
@@ -88,16 +91,18 @@ public class UserRepositoryImpl implements UserRepositoryInter {
             if (affectedRows > 0) {
                 try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
-                        user.setId(generatedKeys.getInt(1));
+                        int id = generatedKeys.getInt(1);
+                        user.setId(id);
+                        return user;
                     }
                 }
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return user;
+        return null;
     }
+
 
     @Override
     public Boolean getUserByEmailAndPassword(String email, String password) {

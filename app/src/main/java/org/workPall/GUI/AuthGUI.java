@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.UUID;
 
 public class AuthGUI extends JFrame {
 
@@ -204,8 +205,7 @@ public class AuthGUI extends JFrame {
                 JOptionPane.showMessageDialog(AuthGUI.this, "All fields must be filled out.", "Validation Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
-            User user = new User(firstName, lastName, email, phoneNumber, address, password, role);
+            User user = new User(0, firstName, lastName, email, phoneNumber, address, password, role);
             User createdUser = userServiceInter.createUser(user);
 
             if (createdUser != null) {

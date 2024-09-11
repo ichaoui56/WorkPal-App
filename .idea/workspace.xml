@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="695db28c-ae74-49b8-a5f6-8105ab7628fb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/impl/SpaceRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/interfaces/SpaceRepositoryInter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/services/impl/SpaceServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/services/interfaces/SpaceServiceInter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/AdminGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/AdminGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/AuthGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/AuthGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/MainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/ManagerGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/ManagerGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/enums/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/enums/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/entities/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/impl/UserRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/impl/UserRepositoryImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,9 +41,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="AnnotationType" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -57,35 +59,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.AppTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WorkPal-App:app [:app:org.example.App.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WorkPal-App:app [:app:org.workPall.App.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WorkPal-App:app [:app:org.workPall.GUI.AuthGUI.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WorkPal-App:app [:app:org.workPall.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WorkPal-App:app [:app:org.workPall.ui.loginUi.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mac/Documents/GitHub/WorkPal-App&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.AppTest.executor": "Run",
+    "Gradle.WorkPal-App:app [:app:org.example.App.main()].executor": "Run",
+    "Gradle.WorkPal-App:app [:app:org.workPall.App.main()].executor": "Run",
+    "Gradle.WorkPal-App:app [:app:org.workPall.GUI.AuthGUI.main()].executor": "Run",
+    "Gradle.WorkPal-App:app [:app:org.workPall.Main.main()].executor": "Run",
+    "Gradle.WorkPal-App:app [:app:org.workPall.ui.loginUi.main()].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "GDP-17-ajouter-de-nouveaux-espaces-gestion-des-espaces-par-les-gestionnaires",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/mac/Documents/GitHub/WorkPal-App",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -105,7 +107,7 @@
       <workItem from="1725579442449" duration="48000" />
       <workItem from="1725579501301" duration="749000" />
       <workItem from="1725610781436" duration="83692000" />
-      <workItem from="1726052416611" duration="6541000" />
+      <workItem from="1726052416611" duration="13222000" />
     </task>
     <servers />
   </component>

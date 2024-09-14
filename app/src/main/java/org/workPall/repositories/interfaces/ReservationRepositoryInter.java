@@ -1,6 +1,7 @@
 package org.workPall.repositories.interfaces;
 
 import org.workPall.entities.Reservation;
+import org.workPall.entities.User;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;

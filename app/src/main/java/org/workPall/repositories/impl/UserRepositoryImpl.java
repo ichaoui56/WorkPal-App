@@ -6,9 +6,7 @@ import org.workPall.enums.Role;
 import org.workPall.repositories.interfaces.UserRepositoryInter;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class UserRepositoryImpl implements UserRepositoryInter {
     private final Connection connection;
@@ -18,8 +16,8 @@ public class UserRepositoryImpl implements UserRepositoryInter {
     }
 
     @Override
-    public List<User> findAll() {
-        List<User> users = new ArrayList<>();
+    public Map<Integer, User> findAll() {
+        Map<Integer, User> usersMap = new HashMap<>();
         String query = "SELECT * FROM users";
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -37,13 +35,14 @@ public class UserRepositoryImpl implements UserRepositoryInter {
 
                 User user = new User(id, firstName, lastName, email, phoneNumber, address, password, role);
 
-                users.add(user);
+                    usersMap.put(id, user);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return users;
+        return usersMap;
     }
+
 
 
     @Override
@@ -167,6 +166,32 @@ public class UserRepositoryImpl implements UserRepositoryInter {
                 throw new SQLException("User not found");
             }
         }
+    }
+
+    @Override
+    public User getUserById(int id) {
+        String query = "SELECT * FROM users WHERE id = ?";
+        User user = null;
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String firstName = rs.getString("firstname");
+                String lastName = rs.getString("lastname");
+                String email = rs.getString("email");
+                String phoneNumber = rs.getString("phonenumber");
+                String address = rs.getString("address");
+                String password = rs.getString("password");
+                String roleStr = rs.getString("role");
+
+                Role role = Role.valueOf(roleStr);
+
+                user = new User(id, firstName, lastName, email, phoneNumber, address, password, role);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
 }

@@ -2,9 +2,10 @@ package org.workPall.services.interfaces;
 
 import org.workPall.entities.User;
 import java.util.List;
+import java.util.Map;
 
 public interface UserServiceInter {
-    List<User> getAllUsers();
+    Map<Integer,User> getAllUsers();
     void logOut();
     User getUserData();
     User createUser(User user);
@@ -12,4 +13,5 @@ public interface UserServiceInter {
     void updateUser(User user);
     void deleteUser(int id);
     String getUserEmailById(int id) throws Exception;
+    User getUserById(int id);
 }

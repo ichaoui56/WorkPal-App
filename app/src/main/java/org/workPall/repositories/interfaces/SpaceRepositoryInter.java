@@ -7,10 +7,9 @@ import java.util.Optional;
 
 public interface SpaceRepositoryInter {
     Space createSpace(Space space);
-    // Method to find space ID by name
+    Boolean modifySpace(Space space);
+    Map<Integer, Space> getSpacesByName(String name);
     Optional<Integer> findSpaceIdByName(String name);
-
-    // Method to delete space by ID
     boolean deleteSpaceById(int id);
     Map<Integer, Space> displayAllSpaces();
 

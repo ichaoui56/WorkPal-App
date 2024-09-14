@@ -14,22 +14,26 @@ public class SpaceServiceImpl implements SpaceServiceInter {
         this.spaceRepository = spaceRepository;
     }
 
+    @Override
     public Space addSpace(Space space) {
         spaceRepository.createSpace(space);
         return space;
     }
 
-    public boolean deleteSpaceByName(String name) {
-        Optional<Integer> spaceIdOpt = spaceRepository.findSpaceIdByName(name);
-
-        if (spaceIdOpt.isPresent()) {
-            int spaceId = spaceIdOpt.get();
-            return spaceRepository.deleteSpaceById(spaceId);
-        } else {
-            System.out.println("Space with name '" + name + "' not found.");
-            return false;
-        }
+    @Override
+    public boolean modifySpaceByName(Space space) {
+        return spaceRepository.modifySpace(space);
     }
+
+    @Override
+    public Map<Integer, Space> getSpacesByName(String name) {
+        return spaceRepository.getSpacesByName(name);
+    }
+    @Override
+    public boolean deleteSpaceByName(int id) {
+        return spaceRepository.deleteSpaceById(id);
+    }
+
 
     @Override
     public Map<Integer, Space> getAllSpaces() {

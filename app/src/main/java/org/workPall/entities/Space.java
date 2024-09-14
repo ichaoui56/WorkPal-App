@@ -15,6 +15,8 @@ public class Space {
     private Map<Long, Event> events = new HashMap<>();
     private Map<Long, Service> services = new HashMap<>();
 
+    public Space() {}
+
     public Space(int id, String name, String description, String location, Boolean available) {
         this.id = id;
         this.name = name;

@@ -1,5 +1,6 @@
 package org.workPall.console;
 
+import org.workPall.entities.Reservation;
 import org.workPall.entities.Space;
 import org.workPall.entities.User;
 import org.workPall.services.interfaces.ReservationServiceInter;
@@ -7,10 +8,12 @@ import org.workPall.services.interfaces.SpaceServiceInter;
 import org.workPall.services.interfaces.UserServiceInter;
 import org.workPall.session.SessionManager;
 
+import java.net.CacheRequest;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -27,7 +30,7 @@ public class MemberConsole {
         this.scanner = new Scanner(System.in);
     }
 
-    public void showMemberUI() {
+    public void showMemberUI() throws SQLException {
         boolean running = true;
         while (running) {
             System.out.println("===== Member Management System =====");
@@ -96,14 +99,14 @@ public class MemberConsole {
         System.out.println("Modify Profile feature is under development.");
     }
 
-    private void manageReservations() {
+    private void manageReservations() throws SQLException {
         boolean running = true;
         while (running) {
             System.out.println("===== Reservations =====");
             System.out.println("1. Search Spaces");
             System.out.println("2. Reserve a Space");
-//            System.out.println("3. View Reservation Details");
-//            System.out.println("4. Save Favorite Spaces");
+            System.out.println("3. Cancel Reservation");
+            System.out.println("4. Display All Reservations");
 //            System.out.println("5. View Events Calendar");
             System.out.println("3. Back to Main Menu");
             System.out.print("Select an option: ");
@@ -117,8 +120,12 @@ public class MemberConsole {
                 case 2:
                     reserveSpace();
                     break;
-
                 case 3:
+                    cancelReserve();
+                    break;
+                case 4:
+                    displayAllReservations();
+                case 5:
                     running = false;
                     break;
                 default:
@@ -191,6 +198,48 @@ public class MemberConsole {
         }
     }
 
+    private void cancelReserve() throws SQLException {
+        System.out.println("===== Cancel Reservation =====");
+        System.out.print("Enter the space ID to cancel reservation: ");
+        int spaceId = scanner.nextInt();
+        scanner.nextLine();
+
+        int userId = SessionManager.getLoggedInUser().getId();
+
+        try {
+            reservationService.cancelReservation(spaceId, userId);
+            System.out.println("Reservation cancelled successfully!");
+        } catch (SQLException e) {
+            System.out.println("An error occurred while trying to cancel the reservation. Please ensure the reservation exists and try again.");
+            e.printStackTrace();
+        }
+
+    }
+
+    public void displayAllReservations() {
+        try {
+            // Use a HashMap instead of ArrayList
+            Map<Integer, Reservation> reservations = reservationService.getAllReservations();
+            System.out.println("===== All Reservations =====");
+
+            for (Map.Entry<Integer, Reservation> entry : reservations.entrySet()) {
+                Reservation reservation = entry.getValue();
+                Space space = reservation.getSpace();
+
+                System.out.println("Reservation ID: " + reservation.getId());
+                System.out.println("Start Time: " + reservation.getStartTime());
+                System.out.println("End Time: " + reservation.getEndTime());
+                System.out.println("User ID: " + reservation.getUserId());
+                System.out.println("Space ID: " + reservation.getSpaceId());
+                System.out.println("Space Name: " + space.getName());
+                System.out.println("Space Location: " + space.getLocation());
+                System.out.println("---------------------------");
+            }
+        } catch (SQLException e) {
+            System.out.println("An error occurred while fetching the reservations.");
+            e.printStackTrace();
+        }
+    }
 
     private void manageSubscription() {
         System.out.println("===== Subscription =====");

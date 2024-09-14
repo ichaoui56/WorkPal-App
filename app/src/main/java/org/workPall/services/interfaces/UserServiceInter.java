@@ -11,4 +11,5 @@ public interface UserServiceInter {
     Boolean login(String email, String password);
     void updateUser(User user);
     void deleteUser(int id);
+    String getUserEmailById(int id) throws Exception;
 }

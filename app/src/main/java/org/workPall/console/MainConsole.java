@@ -1,9 +1,15 @@
 package org.workPall.console;
 
+import org.workPall.repositories.impl.ReservationRepositoryImpl;
 import org.workPall.repositories.impl.SpaceRepositoryImpl;
 import org.workPall.repositories.impl.UserRepositoryImpl;
+import org.workPall.repositories.interfaces.ReservationRepositoryInter;
+import org.workPall.repositories.interfaces.SpaceRepositoryInter;
+import org.workPall.repositories.interfaces.UserRepositoryInter;
+import org.workPall.services.impl.ReservationServiceImpl;
 import org.workPall.services.impl.SpaceServiceImpl;
 import org.workPall.services.impl.UserServiceImpl;
+import org.workPall.services.interfaces.ReservationServiceInter;
 import org.workPall.services.interfaces.SpaceServiceInter;
 import org.workPall.services.interfaces.UserServiceInter;
 
@@ -13,20 +19,21 @@ public class MainConsole {
 
     private final AuthConsole authConsole;
 
-    // Constructor initializes all repositories, services, and consoles for the application
     public MainConsole() throws SQLException {
-        UserRepositoryImpl userRepository = new UserRepositoryImpl();
-        SpaceRepositoryImpl spaceRepository = new SpaceRepositoryImpl();
-        UserServiceInter userServiceInter = new UserServiceImpl(userRepository);
-        SpaceServiceInter spaceServiceInter = new SpaceServiceImpl(spaceRepository);
-        MemberConsole memberConsole = new MemberConsole(userServiceInter);
+        UserRepositoryInter userRepository = new UserRepositoryImpl();
+        SpaceRepositoryInter spaceRepository = new SpaceRepositoryImpl();
+        ReservationRepositoryInter reservationRepository = new ReservationRepositoryImpl();
+        UserServiceInter userService = new UserServiceImpl(userRepository);
+        SpaceServiceInter spaceService = new SpaceServiceImpl(spaceRepository);
+        ReservationServiceInter reservationService = new ReservationServiceImpl(reservationRepository);
+        MemberConsole memberConsole = new MemberConsole(userService, spaceService, reservationService);
         AdminConsole adminConsole = new AdminConsole();
-        ManagerConsole managerConsole = new ManagerConsole(userServiceInter, spaceServiceInter);
+        ManagerConsole managerConsole = new ManagerConsole(userService, spaceService);
 
-        authConsole = new AuthConsole(userServiceInter, memberConsole, managerConsole, adminConsole);
+        authConsole = new AuthConsole(userService, memberConsole, managerConsole, adminConsole);
     }
 
-    public void main(String[] args) {
+    public void main(String[] args) throws SQLException {
         authConsole.start();
     }
 }

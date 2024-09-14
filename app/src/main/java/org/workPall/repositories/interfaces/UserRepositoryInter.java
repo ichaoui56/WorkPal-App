@@ -1,6 +1,8 @@
 package org.workPall.repositories.interfaces;
 
 import org.workPall.entities.User;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserRepositoryInter {
@@ -10,4 +12,6 @@ public interface UserRepositoryInter {
     User createUser(User user);
     void update(User user);
     void delete(int id);
+    public String findEmailByUserId(int userId) throws SQLException;
+
 }

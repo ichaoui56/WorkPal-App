@@ -83,6 +83,55 @@ public class SpaceRepositoryImpl implements SpaceRepositoryInter {
     }
 
     @Override
+    public Map<Integer, Space> searchSpaces(String name, String location, Boolean isAvailable) {
+        Map<Integer, Space> spaces = new HashMap<>();
+        StringBuilder queryBuilder = new StringBuilder("SELECT * FROM spaces WHERE 1=1");
+
+        if (name != null && !name.trim().isEmpty()) {
+            queryBuilder.append(" AND name LIKE ?");
+        }
+        if (location != null && !location.trim().isEmpty()) {
+            queryBuilder.append(" AND location LIKE ?");
+        }
+        if (isAvailable != null) {
+            queryBuilder.append(" AND available = ?");
+        }
+
+        String query = queryBuilder.toString();
+
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            int paramIndex = 1;
+            if (name != null && !name.trim().isEmpty()) {
+                pstmt.setString(paramIndex++, "%" + name + "%");
+            }
+            if (location != null && !location.trim().isEmpty()) {
+                pstmt.setString(paramIndex++, "%" + location + "%");
+            }
+            if (isAvailable != null) {
+                pstmt.setBoolean(paramIndex++, isAvailable);
+            }
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String spaceName = rs.getString("name");
+                    String description = rs.getString("description");
+                    String spaceLocation = rs.getString("location");
+                    boolean available = rs.getBoolean("available");
+
+                    Space space = new Space(id, spaceName, description, spaceLocation, available);
+                    spaces.put(id, space);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return spaces;
+    }
+
+
+    @Override
     public Map<Integer, Space> getSpacesByName(String name) {
         Map<Integer, Space> spaces = new HashMap<>();
         String query = "SELECT * FROM spaces WHERE name = ?";

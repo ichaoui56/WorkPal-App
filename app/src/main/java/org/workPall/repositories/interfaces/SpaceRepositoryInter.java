@@ -12,5 +12,7 @@ public interface SpaceRepositoryInter {
     Optional<Integer> findSpaceIdByName(String name);
     boolean deleteSpaceById(int id);
     Map<Integer, Space> displayAllSpaces();
+    Map<Integer, Space> searchSpaces(String name, String location, Boolean isAvailable);
+
 
 }

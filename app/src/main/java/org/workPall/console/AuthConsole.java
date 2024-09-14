@@ -4,6 +4,7 @@ import org.workPall.entities.User;
 import org.workPall.enums.Role;
 import org.workPall.services.interfaces.UserServiceInter;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class AuthConsole {
@@ -20,7 +21,7 @@ public class AuthConsole {
         this.adminConsole = adminConsole;
     }
 
-    public void login() {
+    public void login() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("=== Login ===");
@@ -107,7 +108,7 @@ public class AuthConsole {
         }
     }
 
-    public void start() {
+    public void start() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
 

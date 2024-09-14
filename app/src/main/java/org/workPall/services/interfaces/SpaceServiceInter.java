@@ -10,4 +10,6 @@ public interface SpaceServiceInter {
     Map<Integer, Space> getAllSpaces();
     Map<Integer, Space> getSpacesByName(String name);
     boolean deleteSpaceByName(int id);
+    Map<Integer, Space> searchSpaces(String name, String location, Boolean isAvailable);
+
 }

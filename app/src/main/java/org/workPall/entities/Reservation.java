@@ -8,19 +8,20 @@ public class Reservation {
     private int id;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private User user;
-    private Space space;
+    private int userId;
+    private int spaceId;
     private Map<Long, Service> services = new HashMap<>();
     private Payment payment;
 
-    public Reservation(int id, LocalDateTime startTime, LocalDateTime endTime, User user, Space space) {
+
+    public Reservation() {};
+    public Reservation(int id, LocalDateTime startTime, LocalDateTime endTime, int userId, int spaceId) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.user = user;
-        this.space = space;
+        this.userId = userId;
+        this.spaceId = spaceId;
     }
-
 
     public int getId() {
         return id;
@@ -32,26 +33,29 @@ public class Reservation {
     public LocalDateTime getStartTime() {
         return startTime;
     }
-    public void setStartTime(LocalDateTime startTime)
-    { this.startTime = startTime;
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
     }
 
     public LocalDateTime getEndTime() {
         return endTime;
     }
-    public void setEndTime(LocalDateTime endTime) { this.endTime = endTime;
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
-    public void setUser(User user) { this.user = user; }
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
-    public Space getSpace() {
-        return space;
+    public int getSpaceId() {
+        return spaceId;
     }
-    public void setSpace(Space space) {
-        this.space = space;
+    public void setSpaceId(int spaceId) {
+        this.spaceId = spaceId;
     }
 
     public Map<Long, Service> getServices() {
@@ -74,8 +78,8 @@ public class Reservation {
                 "id=" + id +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
-                ", user=" + user +
-                ", space=" + space +
+                ", userId=" + userId +
+                ", spaceId=" + spaceId +
                 '}';
     }
 }

@@ -5,6 +5,7 @@ import org.workPall.repositories.interfaces.UserRepositoryInter;
 import org.workPall.services.interfaces.UserServiceInter;
 import org.workPall.session.SessionManager;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserServiceInter {
@@ -53,5 +54,10 @@ public class UserServiceImpl implements UserServiceInter {
     @Override
     public void deleteUser(int id) {
         userRepository.delete(id);
+    }
+
+    @Override
+    public String getUserEmailById(int userId) throws SQLException {
+        return userRepository.findEmailByUserId(userId);
     }
 }

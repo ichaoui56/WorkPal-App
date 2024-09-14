@@ -153,4 +153,20 @@ public class UserRepositoryImpl implements UserRepositoryInter {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public String findEmailByUserId(int userId) throws SQLException {
+        String query = "SELECT email FROM users WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("email");
+            } else {
+                throw new SQLException("User not found");
+            }
+        }
+    }
+
 }

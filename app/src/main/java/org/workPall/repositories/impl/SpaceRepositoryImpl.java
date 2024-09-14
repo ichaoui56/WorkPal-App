@@ -44,6 +44,25 @@ public class SpaceRepositoryImpl implements SpaceRepositoryInter {
         return null;
     }
 
+    @Override
+    public Boolean modifySpace(Space space) {
+        String query = "UPDATE spaces SET name=?, description=?, location=?, available=? WHERE id=?";
+        try(PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1,space.getName());
+            pstmt.setString(2, space.getDescription());
+            pstmt.setString(3, space.getLocation());
+            pstmt.setBoolean(4, space.getAvailable());
+            pstmt.setInt(5, space.getId());
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public Optional<Integer> findSpaceIdByName(String name) {
         String query = "SELECT id FROM spaces WHERE name = ?";
 
@@ -53,17 +72,45 @@ public class SpaceRepositoryImpl implements SpaceRepositoryInter {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     int id = rs.getInt("id");
-                    return Optional.of(id); // Return the found ID
+                    return Optional.of(id);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return Optional.empty(); // Return empty if no space is found
+        return Optional.empty();
     }
 
-    // Delete space by ID
+    @Override
+    public Map<Integer, Space> getSpacesByName(String name) {
+        Map<Integer, Space> spaces = new HashMap<>();
+        String query = "SELECT * FROM spaces WHERE name = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, name);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String spaceName = rs.getString("name");
+                    String description = rs.getString("description");
+                    String location = rs.getString("location");
+                    boolean available = rs.getBoolean("available");
+
+                    Space space = new Space(id, spaceName, description, location, available);
+                    spaces.put(id, space);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return spaces;
+    }
+
+
+    @Override
     public boolean deleteSpaceById(int id) {
         String query = "DELETE FROM spaces WHERE id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {

@@ -117,23 +117,30 @@ public class AuthConsole {
             System.out.println("2. Register");
             System.out.println("3. Exit");
             System.out.print("Select an option: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
 
-            switch (choice) {
-                case 1:
-                    login();
-                    break;
-                case 2:
-                    register();
-                    break;
-                case 3:
-                    exit = true;
-                    System.out.println("Exiting the application...");
-                    break;
-                default:
-                    System.out.println("Invalid option. Please try again.");
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (choice) {
+                    case 1:
+                        login();
+                        break;
+                    case 2:
+                        register();
+                        break;
+                    case 3:
+                        exit = true;
+                        System.out.println("Exiting the application...");
+                        break;
+                    default:
+                        System.out.println("Invalid option. Please try again.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine();
             }
         }
     }
+
 }

@@ -6,6 +6,8 @@ import java.util.Map;
 
 public interface SpaceServiceInter {
     Space addSpace(Space space);
+    boolean modifySpaceByName(Space space);
     Map<Integer, Space> getAllSpaces();
-    boolean deleteSpaceByName(String name);
+    Map<Integer, Space> getSpacesByName(String name);
+    boolean deleteSpaceByName(int id);
 }

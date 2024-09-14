@@ -27,7 +27,7 @@ public class MainConsole {
         SpaceServiceInter spaceService = new SpaceServiceImpl(spaceRepository);
         ReservationServiceInter reservationService = new ReservationServiceImpl(reservationRepository);
         MemberConsole memberConsole = new MemberConsole(userService, spaceService, reservationService);
-        AdminConsole adminConsole = new AdminConsole();
+        AdminConsole adminConsole = new AdminConsole(userService);
         ManagerConsole managerConsole = new ManagerConsole(userService, spaceService);
 
         authConsole = new AuthConsole(userService, memberConsole, managerConsole, adminConsole);

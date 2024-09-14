@@ -7,6 +7,7 @@ import org.workPall.session.SessionManager;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 public class UserServiceImpl implements UserServiceInter {
     private final UserRepositoryInter userRepository;
@@ -16,7 +17,7 @@ public class UserServiceImpl implements UserServiceInter {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public Map<Integer,User> getAllUsers() {
         return userRepository.findAll();
     }
 
@@ -59,5 +60,10 @@ public class UserServiceImpl implements UserServiceInter {
     @Override
     public String getUserEmailById(int userId) throws SQLException {
         return userRepository.findEmailByUserId(userId);
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userRepository.getUserById(id);
     }
 }

@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="695db28c-ae74-49b8-a5f6-8105ab7628fb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/impl/SpaceRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/interfaces/SpaceRepositoryInter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/services/impl/SpaceServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/services/interfaces/SpaceServiceInter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/AuthGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/AuthGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/MainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/ManagerGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/GUI/ManagerGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/impl/UserRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/impl/UserRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/impl/SpaceRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/impl/SpaceRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/interfaces/SpaceRepositoryInter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/repositories/interfaces/SpaceRepositoryInter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/services/impl/SpaceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/services/impl/SpaceServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/workPall/services/interfaces/SpaceServiceInter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/workPall/services/interfaces/SpaceServiceInter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +64,7 @@
     "Gradle.WorkPal-App:app [:app:org.workPall.Main.main()].executor": "Run",
     "Gradle.WorkPal-App:app [:app:org.workPall.ui.loginUi.main()].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "GDP-17-ajouter-de-nouveaux-espaces-gestion-des-espaces-par-les-gestionnaires",
+    "git-widget-placeholder": "GDP-19-supprimer-les-espaces-non-disponibles-gestion-des-espaces-par-les-…aires",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/mac/Documents/GitHub/WorkPal-App",
     "node.js.detected.package.eslint": "true",

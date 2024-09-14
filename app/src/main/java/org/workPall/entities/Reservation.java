@@ -10,6 +10,7 @@ public class Reservation {
     private LocalDateTime endTime;
     private int userId;
     private int spaceId;
+    private Space space;
     private Map<Long, Service> services = new HashMap<>();
     private Payment payment;
 
@@ -58,6 +59,12 @@ public class Reservation {
         this.spaceId = spaceId;
     }
 
+    public Space getSpace() {
+        return space;
+    }
+    public void setSpace(Space space) {
+        this.space = space;
+    }
     public Map<Long, Service> getServices() {
         return services;
     }

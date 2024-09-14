@@ -5,11 +5,10 @@ import org.workPall.repositories.interfaces.ReservationRepositoryInter;
 import org.workPall.services.interfaces.ReservationServiceInter;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
+import java.util.Map;
 
 public class ReservationServiceImpl implements ReservationServiceInter {
     private ReservationRepositoryInter reservationRepository;
@@ -33,5 +32,18 @@ public class ReservationServiceImpl implements ReservationServiceInter {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public  void cancelReservation(int reservationId, int userId) throws SQLException {
+        try {
+            reservationRepository.cancelReservation(reservationId);
+
+        } catch (SQLException e) {
+            System.out.println("Error cancelling reservation: " + e.getMessage());
+        }
+    }
+
+    public Map<Integer,Reservation> getAllReservations() throws SQLException {
+        return reservationRepository.getAllReservations();
     }
 }
